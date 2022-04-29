@@ -35,3 +35,11 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## TODO
 - [ ] Protect admin with authentication
+
+## Build log
+- 29/04 @ 0654
+    I just built out the onboarding page and team choice functionality. I'm super impressed by convex - it's really neat to get reactivity, and that too persistent and across multiple clients, with such little setup. This project is also the first time I'm using Jotai, I was looking for a way to sync state to localStorage and access it globally and Jotai's `atomWithStorage` from `jotai/utils` does exactly that.
+
+    Next steps would be cleaning the admin panel a little and building a mechanism for figuring out when the quiz starts and ends (QuizMeta table - `hasQuizStarted` row). After that I could work on slides/movement, bounce tracking, pounce functionality, points and then the scoreboard.
+
+    The goal is for this to be a "template" that you clone, customize and deploy before a quiz.

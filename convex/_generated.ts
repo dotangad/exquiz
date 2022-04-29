@@ -3,6 +3,7 @@
 // based on the contents of this directory.
 // To regenerate, run `convex codegen`.
 import type allTeams from "./allTeams";
+import type claimTeam from "./claimTeam";
 import type createTeam from "./createTeam";
 
 // This jumpstarts TypeScript completion of the convex-dev/values entry point.
@@ -37,6 +38,7 @@ export type ConvexAPI = {
     allTeams: ClientQuery<typeof allTeams>;
   };
   mutations: {
+    claimTeam: ClientMutation<typeof claimTeam>;
     createTeam: ClientMutation<typeof createTeam>;
   };
 };
