@@ -9,6 +9,7 @@ import { Slide } from "../util/common";
 import { PLAY } from "../util/config";
 import { useAtom } from "jotai";
 import { claimedTeamAtom } from "../util/jotai";
+import Sidebar from "../components/play/Sidebar";
 
 const Home: NextPage = () => {
   const teams = useQuery("allTeams") || [];
@@ -35,7 +36,6 @@ const Home: NextPage = () => {
                 {PLAY.SUBTITLE}
               </div>
             </div>
-
             <div className="flex w-full flex-1 items-center gap-x-5 divide-x-2 divide-slate-200">
               <div>
                 <div className="h-[70vh]">
@@ -47,11 +47,7 @@ const Home: NextPage = () => {
                 </div>
               </div>
 
-              <div className="flex-1 h-full p-5">
-                <div className="text-center font-bold text-xl text-slate-400 uppercase tracking-widest">
-                  Team {claimedTeam?.tnumber}
-                </div>
-              </div>
+              <Sidebar />
             </div>
           </div>
         ) : (

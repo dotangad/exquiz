@@ -10,7 +10,7 @@ export const ONBOARDING = Object.freeze({
   ),
 });
 
-export const SLIDES: readonly Slide[] = Object.freeze(
+export const SLIDES: readonly Omit<Slide, "_id">[] = Object.freeze(
   Array.from({ length: 22 * 2 }, (_, i) => ({
     type: i % 2 === 0 ? "question" : "answer",
     img: `${String(Math.floor((i + 2) / 2)).padStart(2, "0")}_${
@@ -31,4 +31,10 @@ export const PLAY = Object.freeze({
 export const ADMIN = Object.freeze({
   QUIZNAME: ONBOARDING.QUIZNAME,
   SUBTITLE: ONBOARDING.SUBTITLE,
+});
+
+export const POINTS = Object.freeze({
+  POUNCE: { CORRECT: 10, INCORRECT: 15 },
+  BOUNCE: { CORRECT: 10, INCORRECT: 0 },
+  DIRECT: { CORRECT: 5, INCORRECT: 0 },
 });

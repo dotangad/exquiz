@@ -6,16 +6,20 @@ import { useMutation, useQuery } from "../../convex/_generated";
 import AddTeamForm from "../../components/admin/AddTeamForm";
 import StartQuizBtn from "../../components/admin/StartQuizBtn";
 import { ADMIN } from "../../util/config";
-import { Slide } from "../../util/common";
+import { Slide, Team } from "../../util/common";
 import Slides from "../../components/admin/Slides";
+import ScoreTable from "../../components/play/ScoreTable";
+import TeamsTable from "../../components/admin/TeamsTable";
 
 // TODO: protect with basic auth middleware
 // https://stackoverflow.com/questions/64316886/how-do-i-add-basic-authentication-to-nextjs-node-server
 
 const Admin: NextPage = () => {
   const quizStarted = useQuery("quizStarted");
+  const currentSlide: Slide | undefined = useQuery("currentSlide");
   const nextSlide: Slide | undefined = useQuery("nextSlide");
   const goToNextSlide = useMutation("goToNextSlide");
+  const teams: Team[] | undefined = useQuery("allTeams");
 
   return (
     <div>
@@ -37,8 +41,14 @@ const Admin: NextPage = () => {
 
         {quizStarted &&
           (quizStarted ? (
-            <div>
+            <div className="flex gap-x-5">
               <Slides />
+
+              <div>
+                {teams && currentSlide && (
+                  <TeamsTable teams={teams} currentSlide={currentSlide} />
+                )}
+              </div>
             </div>
           ) : (
             <div className="p-10 grid grid-cols-2 gap-x-10">

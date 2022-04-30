@@ -17,3 +17,20 @@ body {
 button.btn {
   @apply bg-exun uppercase font-bold text-white p-3 rounded disabled:bg-gray-400;
 }
+
+table.tbl {
+  @apply w-full;
+}
+
+table.tbl th,
+table.tbl td {
+  @apply p-2 text-center;
+}
+
+table.tbl thead tr {
+  @apply !bg-exun text-white uppercase font-bold tracking-wide;
+}
+
+table.tbl tbody tr:nth-child(even) {
+  @apply bg-slate-100/60;
+}

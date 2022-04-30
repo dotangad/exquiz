@@ -9,11 +9,24 @@ export type Team = {
 };
 
 export type Meta = {
+  _id: Id;
   key: string;
   value: string;
 };
 
 export type Slide = {
+  _id: Id;
   type: "question" | "answer";
   img: string;
+};
+
+export type Answer = {
+  _id: Id;
+  team: string;
+  slide: string;
+  pounced: boolean;
+  bounced: boolean;
+  direct: boolean;
+  answered: boolean;
+  pointsAwarded: number;
 };
