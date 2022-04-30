@@ -20,7 +20,7 @@ function AnswerStats({ team, slide }: { team: Team; slide: Slide }) {
   }, [answers, team]);
 
   return answer && answer.answered ? (
-    <div>
+    <div className="text-center">
       Answered on{" "}
       {answer.pounced ? "pounce" : answer.bounced ? "bounced" : "direct"}.{" "}
       {answer.pointsAwarded} points received.
@@ -60,8 +60,6 @@ export default function Sidebar() {
               </div>
               <div>{/* TODO */} Team 1</div>
             </div>
-
-            <AnswerStats team={claimedTeam} slide={currentSlide} />
           </div>
         ))}
       <div></div>
