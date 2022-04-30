@@ -22,8 +22,8 @@ export type Slide = {
 
 export type Answer = {
   _id: Id;
-  team: string;
-  slide: string;
+  team: Id;
+  slide: Id;
   pounced: boolean;
   bounced: boolean;
   direct: boolean;

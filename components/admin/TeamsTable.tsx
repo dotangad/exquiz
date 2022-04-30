@@ -13,7 +13,7 @@ export default function TeamsTable({
 }) {
   const answers: Answer[] | undefined = useQuery(
     "answersForSlide",
-    currentSlide._id.toString()
+    currentSlide._id,
   );
 
   return (

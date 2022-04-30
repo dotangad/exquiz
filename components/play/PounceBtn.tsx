@@ -12,16 +12,14 @@ export default function PounceBtn({
   const hasAnswered = useQuery(
     "hasAnswered",
     // @ts-ignore
-    claimedTeam._id["$id"],
-    currentSlide._id.toString()
+    claimedTeam._id,
+    currentSlide._id
   );
   const pounce = useMutation("pounce");
 
   const handlePounce = async (e: SyntheticEvent) => {
     e.preventDefault();
-
-    // @ts-ignore
-    await pounce(claimedTeam._id["$id"], currentSlide._id.toString());
+    await pounce(claimedTeam._id, currentSlide._id);
   };
 
   return (

@@ -10,13 +10,13 @@ import ScoreTable from "./ScoreTable";
 function AnswerStats({ team, slide }: { team: Team; slide: Slide }) {
   const answers: Answer[] | undefined = useQuery(
     "answersForSlide",
-    slide._id.toString()
+    slide._id
   );
   const [answer, setAnswer] = useState<Answer | undefined>();
 
   useEffect(() => {
     // @ts-ignore
-    setAnswer(answers?.find((answer) => team._id["$id"] === answer.team));
+    setAnswer(answers?.find((answer) => team._id === answer.team));
   }, [answers, team]);
 
   return answer && answer.answered ? (
