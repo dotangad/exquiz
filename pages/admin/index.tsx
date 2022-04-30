@@ -1,20 +1,21 @@
+/* eslint-disable @next/next/no-img-element */
 import type { NextPage } from "next";
 import Head from "next/head";
 import React, { FormEvent, SyntheticEvent, useState } from "react";
 import { useMutation, useQuery } from "../../convex/_generated";
 import AddTeamForm from "../../components/admin/AddTeamForm";
 import StartQuizBtn from "../../components/admin/StartQuizBtn";
+import { ADMIN } from "../../util/config";
+import { Slide } from "../../util/common";
+import Slides from "../../components/admin/Slides";
 
 // TODO: protect with basic auth middleware
 // https://stackoverflow.com/questions/64316886/how-do-i-add-basic-authentication-to-nextjs-node-server
 
-// If hasQuizStarted
-//   - Show slides and teams (points/directs etc)
-// Else
-//   - Show add team form and start quiz button
-
 const Admin: NextPage = () => {
   const quizStarted = useQuery("quizStarted");
+  const nextSlide: Slide | undefined = useQuery("nextSlide");
+  const goToNextSlide = useMutation("goToNextSlide");
 
   return (
     <div>
@@ -24,14 +25,32 @@ const Admin: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {quizStarted ? (
-        <div>quiz started</div>
-      ) : (
-        <div>
-          <AddTeamForm />
-          <StartQuizBtn />
+      <div className="h-screen w-screen p-10 flex flex-col items-center justify-center overflow-none">
+        <div className="mb-5">
+          <h1 className="text-3xl font-bold text-center text-slate-700 mb-1">
+            {ADMIN.QUIZNAME}
+          </h1>
+          <div className="text-xl font-semibold text-center text-slate-500">
+            {ADMIN.SUBTITLE}
+          </div>
         </div>
-      )}
+
+        {quizStarted &&
+          (quizStarted ? (
+            <div>
+              <Slides />
+            </div>
+          ) : (
+            <div className="p-10 grid grid-cols-2 gap-x-10">
+              <div>
+                <AddTeamForm />
+              </div>
+              <div>
+                <StartQuizBtn />
+              </div>
+            </div>
+          ))}
+      </div>
     </div>
   );
 };

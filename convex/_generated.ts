@@ -5,6 +5,9 @@
 import type allTeams from "./allTeams";
 import type claimTeam from "./claimTeam";
 import type createTeam from "./createTeam";
+import type currentSlide from "./currentSlide";
+import type goToNextSlide from "./goToNextSlide";
+import type nextSlide from "./nextSlide";
 import type quizStarted from "./quizStarted";
 import type startQuiz from "./startQuiz";
 
@@ -38,11 +41,14 @@ type ClientQuery<F extends (first: QueryCtx, ...args: any) => any> = (
 export type ConvexAPI = {
   queries: {
     allTeams: ClientQuery<typeof allTeams>;
+    currentSlide: ClientQuery<typeof currentSlide>;
+    nextSlide: ClientQuery<typeof nextSlide>;
     quizStarted: ClientQuery<typeof quizStarted>;
   };
   mutations: {
     claimTeam: ClientMutation<typeof claimTeam>;
     createTeam: ClientMutation<typeof createTeam>;
+    goToNextSlide: ClientMutation<typeof goToNextSlide>;
     startQuiz: ClientMutation<typeof startQuiz>;
   };
 };

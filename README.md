@@ -43,3 +43,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     Next steps would be cleaning the admin panel a little and building a mechanism for figuring out when the quiz starts and ends (QuizMeta table - `hasQuizStarted` row). After that I could work on slides/movement, bounce tracking, pounce functionality, points and then the scoreboard.
 
     The goal is for this to be a "template" that you clone, customize and deploy before a quiz.
+- 30/4 @ 2150
+    Just built the start quiz mechanism. Some sort of bulk insert would be nice, right now I'm running 1 insert query/slide - which is okay since the highest value of n is usually less than 100. Building the slide control mechanism now. I'll work on the scoreboard after.
+- 01/05 @ 0119
+    Built a scoreboard and wrote code to make the slides change from the admin. I'll work on pounce and scoring next and then direct tracking last - it seems like the most complicated thing out of all of these.

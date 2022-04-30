@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { SyntheticEvent, useEffect, useState } from "react";
 import { useMutation, useQuery } from "../../convex/_generated";
 
 const AddTeamForm: React.FC = () => {
@@ -14,32 +14,31 @@ const AddTeamForm: React.FC = () => {
     );
   }, [teams]);
 
+  const handleSubmit = async (e: SyntheticEvent) => {
+    e.preventDefault();
+    setError("");
+
+    if (tnumber < 1) {
+      setError("Team number must be > 0");
+      return;
+    }
+
+    if (name === "") {
+      setError(
+        "Team name cannot be empty, eg: 'Vinayak Pachnanda, Angad Singh'"
+      );
+      return;
+    }
+
+    setTnumber(1); // reset text entry box
+    setName("");
+
+    await createTeam(tnumber, name);
+    setError("Team Created");
+  };
+
   return (
-    <form
-      onSubmit={async (e) => {
-        e.preventDefault();
-        setError("");
-
-        if (tnumber < 1) {
-          setError("Team number must be > 0");
-          return;
-        }
-
-        if (name === "") {
-          setError(
-            "Team name cannot be empty, eg: 'Vinayak Pachnanda, Angad Singh'"
-          );
-          return;
-        }
-
-        setTnumber(1); // reset text entry box
-        setName("");
-
-        await createTeam(tnumber, name);
-        setError("Team Created");
-      }}
-      className="p-10 flex flex-col gap-y-3"
-    >
+    <form onSubmit={handleSubmit} className="flex flex-col gap-y-3">
       <div className="flex items-center gap-x-5">
         <label htmlFor="tnumber">Team Number</label>
         <input

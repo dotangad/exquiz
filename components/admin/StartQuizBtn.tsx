@@ -18,7 +18,7 @@ export default function StartQuizBtn() {
   };
 
   return (
-    <div className="p-10">
+    <div className="">
       {teams != [] && teams?.every((t) => t.claimed) ? (
         <div>All teams claimed</div>
       ) : (

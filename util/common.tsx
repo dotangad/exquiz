@@ -7,3 +7,13 @@ export type Team = {
   points: number;
   claimed: boolean;
 };
+
+export type Meta = {
+  key: string;
+  value: string;
+};
+
+export type Slide = {
+  type: "question" | "answer";
+  img: string;
+};

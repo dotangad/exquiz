@@ -19,12 +19,10 @@ export default function Onboarding() {
             <TeamCard team={team} key={i} />
           ))}
         </div>
-        {claimedTeam ? (
-          quizStarted?.value === true ? (
-            <div className="text-center">Quiz has begun</div>
-          ) : (
-            <div className="text-center">The quiz will begin shortly</div>
-          )
+        {quizStarted && quizStarted?.value === true ? (
+          <div className="text-center">Quiz has begun</div>
+        ) : claimedTeam ? (
+          <div className="text-center">The quiz will begin shortly</div>
         ) : (
           <div className="text-center">Please choose a team</div>
         )}
