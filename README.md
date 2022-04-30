@@ -45,5 +45,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     The goal is for this to be a "template" that you clone, customize and deploy before a quiz.
 - 30/4 @ 2150
     Just built the start quiz mechanism. Some sort of bulk insert would be nice, right now I'm running 1 insert query/slide - which is okay since the highest value of n is usually less than 100. Building the slide control mechanism now. I'll work on the scoreboard after.
-- 01/05 @ 0119
+- 01/05 @ 0119jj
     Built a scoreboard and wrote code to make the slides change from the admin. I'll work on pounce and scoring next and then direct tracking last - it seems like the most complicated thing out of all of these.
+- 01/05 @ 0451
+    Finished pounce grading. I was running into some issues with references so I asked on the Convex slack, someone replied and told me to use a workaround. Workaround worked!
+
+    I'll get to direct tracking and bounces next - I have no idea how I'll make that work right now.
