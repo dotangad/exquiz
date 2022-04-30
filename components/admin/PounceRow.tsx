@@ -22,7 +22,7 @@ export default function PounceRow({
     gradeAnswer(
       answer._id,
       team._id,
-      correct ? POINTS.POUNCE.CORRECT : POINTS.POUNCE.INCORRECT
+      correct ? POINTS.POUNCE.CORRECT : -POINTS.POUNCE.INCORRECT
     );
   };
 
