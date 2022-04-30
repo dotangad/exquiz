@@ -13,3 +13,7 @@ body {
 * {
   box-sizing: border-box;
 }
+
+button.btn {
+  @apply bg-exun uppercase font-bold text-white p-3 rounded disabled:bg-gray-400;
+}

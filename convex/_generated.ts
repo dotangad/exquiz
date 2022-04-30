@@ -5,6 +5,8 @@
 import type allTeams from "./allTeams";
 import type claimTeam from "./claimTeam";
 import type createTeam from "./createTeam";
+import type quizStarted from "./quizStarted";
+import type startQuiz from "./startQuiz";
 
 // This jumpstarts TypeScript completion of the convex-dev/values entry point.
 import type { Id } from "convex-dev/values";
@@ -36,10 +38,12 @@ type ClientQuery<F extends (first: QueryCtx, ...args: any) => any> = (
 export type ConvexAPI = {
   queries: {
     allTeams: ClientQuery<typeof allTeams>;
+    quizStarted: ClientQuery<typeof quizStarted>;
   };
   mutations: {
     claimTeam: ClientMutation<typeof claimTeam>;
     createTeam: ClientMutation<typeof createTeam>;
+    startQuiz: ClientMutation<typeof startQuiz>;
   };
 };
 

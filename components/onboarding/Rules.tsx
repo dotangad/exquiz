@@ -6,7 +6,7 @@ const Rules: React.FC = () => {
     <div className="flex flex-col justify-center items-stretch gap-y-5">
       <div>
         <h1 className="font-bold text-6xl text-center">
-          Quiz {ONBOARDING.QUIZNAME}
+          {ONBOARDING.QUIZNAME}
         </h1>
         <p className="text-2xl font-semibold text-slate-500 text-center mt-2">
           {ONBOARDING.SUBTITLE}
