@@ -8,6 +8,7 @@ import type claimTeam from "./claimTeam";
 import type createTeam from "./createTeam";
 import type currentSlide from "./currentSlide";
 import type goToNextSlide from "./goToNextSlide";
+import type gradeAnswer from "./gradeAnswer";
 import type hasAnswered from "./hasAnswered";
 import type nextSlide from "./nextSlide";
 import type pounce from "./pounce";
@@ -54,6 +55,7 @@ export type ConvexAPI = {
     claimTeam: ClientMutation<typeof claimTeam>;
     createTeam: ClientMutation<typeof createTeam>;
     goToNextSlide: ClientMutation<typeof goToNextSlide>;
+    gradeAnswer: ClientMutation<typeof gradeAnswer>;
     pounce: ClientMutation<typeof pounce>;
     startQuiz: ClientMutation<typeof startQuiz>;
   };

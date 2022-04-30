@@ -1,7 +1,7 @@
 import { Slide } from "./common";
 
 export const ONBOARDING = Object.freeze({
-  QUIZNAME: "e-Lite 2022",
+  QUIZNAME: "something in the way",
   SUBTITLE: "hmmmmmmmmmmmmmmmmm",
   RULES: Array.from(
     { length: 6 },

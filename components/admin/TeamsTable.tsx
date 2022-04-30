@@ -1,6 +1,8 @@
-import { useQuery } from "../../convex/_generated";
+import { SyntheticEvent } from "react";
+import { useMutation, useQuery } from "../../convex/_generated";
 import { Answer, Slide, Team } from "../../util/common";
 import { POINTS } from "../../util/config";
+import PounceRow from "./PounceRow";
 
 export default function TeamsTable({
   teams,
@@ -14,8 +16,6 @@ export default function TeamsTable({
     currentSlide._id.toString()
   );
 
-  console.log({ answers });
-
   return (
     <table className="tbl min-w-[600px]">
       <thead>
@@ -26,35 +26,37 @@ export default function TeamsTable({
         </tr>
       </thead>
       <tbody>
-        {teams?.map((team, i) =>
-          answers?.find((answer) => team._id.toString() === answer.team) ? (
-            <tr key={i}>
-              <td>
-                <div>Team {team.tnumber}</div>
-                <div className="text-xs uppercase font-bold text-amber-500">
-                  (pounced)
-                </div>
-              </td>
-              <td>{team.points}</td>
-              <td>
-                <div className="flex gap-x-3 w-full items-center justify-center">
-                  <button className="btn text-xs !p-2">
-                    Correct (+{POINTS.POUNCE.CORRECT})
-                  </button>
-                  <button className="btn text-xs !p-2">
-                    Incorrect (-{POINTS.POUNCE.INCORRECT})
-                  </button>
-                </div>
-              </td>
-            </tr>
-          ) : (
-            <tr key={i}>
-              <td>Team {team.tnumber}</td>
-              <td>{team.points}</td>
-              <td></td>
-            </tr>
-          )
-        )}
+        {teams?.map((team, i) => {
+          const answer = answers?.find(
+            (answer) => team._id.toString() === answer.team
+          );
+
+          if (!answer) {
+            return (
+              <tr key={i}>
+                <td>Team {team.tnumber}</td>
+                <td>{team.points}</td>
+                <td></td>
+              </tr>
+            );
+          }
+
+          if (answer.answered) {
+            return (
+              <tr key={i}>
+                <td>Team {team.tnumber}</td>
+                <td>{team.points}</td>
+                <td>{answer.pointsAwarded} points</td>
+              </tr>
+            );
+          }
+
+          if (answer.pounced) {
+            return <PounceRow team={team} answer={answer} key={i} />;
+          }
+
+          return <tr key={i}></tr>;
+        })}
       </tbody>
     </table>
   );

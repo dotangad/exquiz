@@ -28,6 +28,7 @@ const TeamCard: React.FC<{ team: Team }> = ({ team }) => {
 };
 
 // TODO: Add direct and pounce indicators
+// fetch answers for current slide, render from there
 
 const Scoreboard: NextPage = () => {
   const teams: Team[] | undefined = useQuery("allTeams");
@@ -81,9 +82,10 @@ const Scoreboard: NextPage = () => {
                     </div>
                   ) : (
                     <div
-                      className="bg-exun rounded-xl w-[80px] transition"
+                      className="bg-exun rounded-xl w-[80px]"
                       style={{
-                        height: (points / maxPoints) * 100,
+                        height: String((points / maxPoints) * 100) + `%`,
+                        transition: "height 300ms ease",
                       }}
                     ></div>
                   )}
