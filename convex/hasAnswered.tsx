@@ -1,7 +1,7 @@
 import { query } from "convex-dev/server";
 import { Id } from "convex-dev/values";
 
-export default query(({ db }, teamId: string, slideId: string) => {
+export default query(({ db }, teamId: Id, slideId: Id) => {
   return db
     .table("answers")
     .filter((q) =>

@@ -13,7 +13,7 @@ export default function TeamsTable({
 }) {
   const answers: Answer[] | undefined = useQuery(
     "answersForSlide",
-    currentSlide._id.toString()
+    currentSlide._id,
   );
 
   return (
@@ -28,7 +28,7 @@ export default function TeamsTable({
       <tbody>
         {teams?.map((team, i) => {
           const answer = answers?.find(
-            (answer) => team._id.toString() === answer.team
+            (answer) => team._id.equals(answer.team)
           );
 
           if (!answer) {
