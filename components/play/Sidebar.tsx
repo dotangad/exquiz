@@ -16,7 +16,7 @@ function AnswerStats({ team, slide }: { team: Team; slide: Slide }) {
 
   useEffect(() => {
     // @ts-ignore
-    setAnswer(answers?.find((answer) => team._id === answer.team));
+    setAnswer(answers?.find((answer) => team._id.equals(answer.team)));
   }, [answers, team]);
 
   return answer && answer.answered ? (
