@@ -25,34 +25,33 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {quizStarted &&
-        (quizStarted?.value === true && claimedTeam ? (
-          <div className="h-screen w-screen p-10 flex flex-col items-center justify-center overflow-none">
-            <div className="mb-5">
-              <h1 className="text-3xl font-bold text-center text-slate-700 mb-1">
-                {PLAY.QUIZNAME}
-              </h1>
-              <div className="text-xl font-semibold text-center text-slate-500">
-                {PLAY.SUBTITLE}
-              </div>
-            </div>
-            <div className="flex w-full flex-1 items-center gap-x-5 divide-x-2 divide-slate-200">
-              <div>
-                <div className="h-[70vh]">
-                  <img
-                    src={"/slides/" + currentSlide?.img}
-                    alt="Slide"
-                    className="h-full w-auto"
-                  />
-                </div>
-              </div>
-
-              <Sidebar />
+      {quizStarted?.value === true && claimedTeam ? (
+        <div className="h-screen w-screen p-10 flex flex-col items-center justify-center overflow-none">
+          <div className="mb-5">
+            <h1 className="text-3xl font-bold text-center text-slate-700 mb-1">
+              {PLAY.QUIZNAME}
+            </h1>
+            <div className="text-xl font-semibold text-center text-slate-500">
+              {PLAY.SUBTITLE}
             </div>
           </div>
-        ) : (
-          <Onboarding />
-        ))}
+          <div className="flex w-full flex-1 items-center gap-x-5 divide-x-2 divide-slate-200">
+            <div>
+              <div className="h-[70vh]">
+                <img
+                  src={"/slides/" + currentSlide?.img}
+                  alt="Slide"
+                  className="h-full w-auto"
+                />
+              </div>
+            </div>
+
+            {<Sidebar />}
+          </div>
+        </div>
+      ) : (
+        <Onboarding />
+      )}
     </div>
   );
 };

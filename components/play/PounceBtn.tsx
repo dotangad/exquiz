@@ -11,7 +11,6 @@ export default function PounceBtn({
 }) {
   const hasAnswered = useQuery(
     "hasAnswered",
-    // @ts-ignore
     claimedTeam._id,
     currentSlide._id
   );

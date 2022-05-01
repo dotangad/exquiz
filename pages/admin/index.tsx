@@ -39,27 +39,26 @@ const Admin: NextPage = () => {
           </div>
         </div>
 
-        {quizStarted &&
-          (quizStarted ? (
-            <div className="flex gap-x-5">
-              <Slides />
+        {quizStarted ? (
+          <div className="flex gap-x-5">
+            <Slides />
 
-              <div>
-                {teams && currentSlide && (
-                  <TeamsTable teams={teams} currentSlide={currentSlide} />
-                )}
-              </div>
+            <div>
+              {teams && currentSlide && (
+                <TeamsTable teams={teams} currentSlide={currentSlide} />
+              )}
             </div>
-          ) : (
-            <div className="p-10 grid grid-cols-2 gap-x-10">
-              <div>
-                <AddTeamForm />
-              </div>
-              <div>
-                <StartQuizBtn />
-              </div>
+          </div>
+        ) : (
+          <div className="p-10 grid grid-cols-2 gap-x-10">
+            <div>
+              <AddTeamForm />
             </div>
-          ))}
+            <div>
+              <StartQuizBtn />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
