@@ -8,7 +8,6 @@ export default mutation(({ db }, team: Id, slide: Id) => {
     slide: slide,
     pounced: true,
     bounced: false,
-    // TODO: check for current direct
     direct: false,
     answered: false,
     pointsAwarded: 0,

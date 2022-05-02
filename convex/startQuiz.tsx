@@ -6,25 +6,22 @@ export default mutation(async ({ db }) => {
     db.insert("slides", slide);
   }
 
-  const quizStartedId = (
-    await db
-      .table("meta")
-      .filter((q) => q.eq(q.field("key"), "quizStarted"))
-      .first()
-  )?._id;
+  const team = await db.table("teams").first();
+  const slide = await db.table("slides").first();
 
-  quizStartedId
-    ? db.update(quizStartedId, { value: true })
-    : db.insert("meta", { key: "quizStarted", value: true });
+  db.insert("meta", { key: "quizStarted", value: true });
+  db.insert("meta", { key: "currentSlide", value: SLIDES[0].img });
+  db.insert("meta", { key: "currentDirect", value: team._id });
+  db.insert("meta", { key: "currentBounce", value: team._id });
+  db.insert("meta", { key: "bounceDirection", value: +1 });
 
-  const currentSlideId = (
-    await db
-      .table("meta")
-      .filter((q) => q.eq(q.field("key"), "currentSlide"))
-      .first()
-  )?._id;
-
-  currentSlideId
-    ? db.update(currentSlideId, { value: SLIDES[0].img })
-    : db.insert("meta", { key: "currentSlide", value: SLIDES[0].img });
+  db.insert("answers", {
+    team: team._id,
+    slide: slide._id,
+    pounced: false,
+    bounced: false,
+    direct: true,
+    answered: false,
+    pointsAwarded: 0,
+  });
 });

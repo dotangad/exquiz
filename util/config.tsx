@@ -35,6 +35,6 @@ export const ADMIN = Object.freeze({
 
 export const POINTS = Object.freeze({
   POUNCE: { CORRECT: 10, INCORRECT: 15 },
-  BOUNCE: { CORRECT: 10, INCORRECT: 0 },
-  DIRECT: { CORRECT: 5, INCORRECT: 0 },
+  BOUNCE: { CORRECT: 5, INCORRECT: 0 },
+  DIRECT: { CORRECT: 10, INCORRECT: 0 },
 });

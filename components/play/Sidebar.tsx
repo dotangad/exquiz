@@ -3,6 +3,7 @@ import { useAtom } from "jotai";
 import { SyntheticEvent, useEffect, useState } from "react";
 import { useMutation, useQuery } from "../../convex/_generated";
 import { Answer, Slide, Team } from "../../util/common";
+import { POINTS } from "../../util/config";
 import { claimedTeamAtom } from "../../util/jotai";
 import PounceBtn from "./PounceBtn";
 import ScoreTable from "./ScoreTable";
@@ -12,19 +13,39 @@ function AnswerStats({ team, slide }: { team: Team; slide: Slide }) {
   const [answer, setAnswer] = useState<Answer | undefined>();
 
   useEffect(() => {
-    // @ts-ignore
     setAnswer(answers?.find((answer) => team._id.equals(answer.team)));
   }, [answers, team]);
 
-  return answer && answer.answered ? (
-    <div className="text-center">
-      Answered on{" "}
-      {answer.pounced ? "pounce" : answer.bounced ? "bounced" : "direct"}.{" "}
-      {answer.pointsAwarded} points received.
-    </div>
-  ) : (
-    <></>
-  );
+  if (!answer) return <></>;
+
+  if (answer.direct)
+    return (
+      <div className="text-center">
+        This question is your direct. Answer correctly for +
+        {POINTS.DIRECT.CORRECT} points and incorrectly for -
+        {POINTS.DIRECT.INCORRECT} points.
+      </div>
+    );
+
+  if (answer.bounced)
+    return (
+      <div className="text-center">
+        You can answer this question on bounce. Answer correctly for +
+        {POINTS.BOUNCE.CORRECT} points and incorrectly for -
+        {POINTS.BOUNCE.INCORRECT} points.
+      </div>
+    );
+
+  if (answer.answered)
+    return (
+      <div className="text-center">
+        Answered on{" "}
+        {answer.pounced ? "pounce" : answer.bounced ? "bounced" : "direct"}.{" "}
+        {answer.pointsAwarded} points received.
+      </div>
+    );
+
+  return <></>;
 }
 
 export default function Sidebar() {

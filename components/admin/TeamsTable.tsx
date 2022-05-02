@@ -2,6 +2,7 @@ import { SyntheticEvent } from "react";
 import { useMutation, useQuery } from "../../convex/_generated";
 import { Answer, Slide, Team } from "../../util/common";
 import { POINTS } from "../../util/config";
+import DirectRow from "./DirectRow";
 import PounceRow from "./PounceRow";
 
 export default function TeamsTable({
@@ -13,7 +14,7 @@ export default function TeamsTable({
 }) {
   const answers: Answer[] | undefined = useQuery(
     "answersForSlide",
-    currentSlide._id,
+    currentSlide._id
   );
 
   return (
@@ -27,8 +28,8 @@ export default function TeamsTable({
       </thead>
       <tbody>
         {teams?.map((team, i) => {
-          const answer = answers?.find(
-            (answer) => team._id.equals(answer.team)
+          const answer = answers?.find((answer) =>
+            team._id.equals(answer.team)
           );
 
           if (!answer) {
@@ -53,6 +54,10 @@ export default function TeamsTable({
 
           if (answer.pounced) {
             return <PounceRow team={team} answer={answer} key={i} />;
+          }
+
+          if (answer.direct) {
+            return <DirectRow team={team} answer={answer} key={i} />;
           }
 
           return <tr key={i}></tr>;

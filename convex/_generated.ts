@@ -4,6 +4,7 @@
 // To regenerate, run `convex codegen`.
 import type allTeams from "./allTeams";
 import type answersForSlide from "./answersForSlide";
+import type bounce from "./bounce";
 import type claimTeam from "./claimTeam";
 import type createTeam from "./createTeam";
 import type currentSlide from "./currentSlide";
@@ -52,6 +53,7 @@ export type ConvexAPI = {
     quizStarted: ClientQuery<typeof quizStarted>;
   };
   mutations: {
+    bounce: ClientMutation<typeof bounce>;
     claimTeam: ClientMutation<typeof claimTeam>;
     createTeam: ClientMutation<typeof createTeam>;
     goToNextSlide: ClientMutation<typeof goToNextSlide>;
