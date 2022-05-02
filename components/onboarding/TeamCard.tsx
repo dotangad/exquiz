@@ -1,15 +1,16 @@
+import { Id } from "convex-dev/values";
 import { useAtom } from "jotai";
 import { SyntheticEvent } from "react";
 import { useMutation } from "../../convex/_generated";
 import { Team } from "../../util/common";
-import { claimedTeamAtom } from "../../util/jotai";
+import { claimedTeamAtomUnserialized } from "../../util/jotai";
 
 const TeamCard: React.FC<{ team: Team }> = ({ team }) => {
   const claimTeam = useMutation("claimTeam");
-  const [claimedTeam, setClaimedTeam] = useAtom(claimedTeamAtom);
+  const [claimedTeam, setClaimedTeam] = useAtom(claimedTeamAtomUnserialized);
+
   const handleClaim = (e: SyntheticEvent) => {
     e.preventDefault();
-    console.log({ team });
 
     // Run claimTeam mutation
     claimTeam(team._id);

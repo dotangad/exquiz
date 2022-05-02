@@ -8,6 +8,7 @@ export type Team = {
   claimed: boolean;
 };
 
+export type TeamUnserialized = Omit<Team, "_id"> & { _id: string };
 
 export type Meta = {
   _id: Id;
