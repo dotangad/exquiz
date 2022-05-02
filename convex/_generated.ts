@@ -3,14 +3,10 @@
 // based on the contents of this directory.
 // To regenerate, run `convex codegen`.
 import type allTeams from "./allTeams";
-import type answersForSlide from "./answersForSlide";
-import type bounce from "./bounce";
 import type claimTeam from "./claimTeam";
 import type createTeam from "./createTeam";
 import type currentSlide from "./currentSlide";
 import type goToNextSlide from "./goToNextSlide";
-import type gradeAnswer from "./gradeAnswer";
-import type hasAnswered from "./hasAnswered";
 import type nextSlide from "./nextSlide";
 import type pounce from "./pounce";
 import type quizStarted from "./quizStarted";
@@ -46,18 +42,14 @@ type ClientQuery<F extends (first: QueryCtx, ...args: any) => any> = (
 export type ConvexAPI = {
   queries: {
     allTeams: ClientQuery<typeof allTeams>;
-    answersForSlide: ClientQuery<typeof answersForSlide>;
     currentSlide: ClientQuery<typeof currentSlide>;
-    hasAnswered: ClientQuery<typeof hasAnswered>;
     nextSlide: ClientQuery<typeof nextSlide>;
     quizStarted: ClientQuery<typeof quizStarted>;
   };
   mutations: {
-    bounce: ClientMutation<typeof bounce>;
     claimTeam: ClientMutation<typeof claimTeam>;
     createTeam: ClientMutation<typeof createTeam>;
     goToNextSlide: ClientMutation<typeof goToNextSlide>;
-    gradeAnswer: ClientMutation<typeof gradeAnswer>;
     pounce: ClientMutation<typeof pounce>;
     startQuiz: ClientMutation<typeof startQuiz>;
   };

@@ -5,7 +5,7 @@ import React, { FormEvent, SyntheticEvent, useState } from "react";
 import { useMutation, useQuery } from "../../convex/_generated";
 import AddTeamForm from "../../components/admin/AddTeamForm";
 import StartQuizBtn from "../../components/admin/StartQuizBtn";
-import { ADMIN } from "../../util/config";
+import { ADMIN, POINTS } from "../../util/config";
 import { Slide, Team } from "../../util/common";
 import Slides from "../../components/admin/Slides";
 import ScoreTable from "../../components/play/ScoreTable";
@@ -44,6 +44,28 @@ const Admin: NextPage = () => {
             <Slides />
 
             <div>
+              <table className="tbl mb-10">
+                <thead>
+                  <tr>
+                    <th>Answer on</th>
+                    <th>Correct</th>
+                    <th>Incorrect</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    ["Pounce", POINTS.POUNCE.CORRECT, -POINTS.POUNCE.INCORRECT],
+                    ["Direct", POINTS.DIRECT.CORRECT, -POINTS.DIRECT.INCORRECT],
+                    ["Bounce", POINTS.BOUNCE.CORRECT, -POINTS.BOUNCE.INCORRECT],
+                  ].map(([label, correct, incorrect], i) => (
+                    <tr key={i}>
+                      <td>{label}</td>
+                      <td>{correct}</td>
+                      <td>{incorrect}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
               {teams && currentSlide && (
                 <TeamsTable teams={teams} currentSlide={currentSlide} />
               )}

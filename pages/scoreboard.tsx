@@ -36,8 +36,14 @@ const Scoreboard: NextPage = () => {
   const [maxPoints, setMaxPoints] = useState(0);
 
   useEffect(() => {
-    setMaxPoints(teams?.sort((a, b) => b.points - a.points)[0].points ?? 0);
+    setMaxPoints(
+      (teams?.length ?? 0) > 1
+        ? teams?.sort((a, b) => b.points - a.points)[0].points ?? 0
+        : 0
+    );
   }, [teams]);
+
+  // TODO: Indicate pounce window open/close
 
   return (
     <div>

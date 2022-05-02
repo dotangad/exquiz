@@ -1,15 +1,12 @@
 import { query } from "convex-dev/server";
 
 export default query(async ({ db }) => {
-  const img = await db
+  const slide = await db
     .table("meta")
     .filter((q) => q.eq(q.field("key"), "currentSlide"))
     .first();
 
-  if (!img) return null;
+  if (!slide) return null;
 
-  return db
-    .table("slides")
-    .filter((q) => q.eq(q.field("img"), img.value))
-    .first();
+  return db.get(slide.value);
 });

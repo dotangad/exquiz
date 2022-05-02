@@ -10,18 +10,8 @@ export default mutation(async ({ db }) => {
   const slide = await db.table("slides").first();
 
   db.insert("meta", { key: "quizStarted", value: true });
-  db.insert("meta", { key: "currentSlide", value: SLIDES[0].img });
+  db.insert("meta", { key: "currentSlide", value: slide._id });
   db.insert("meta", { key: "currentDirect", value: team._id });
   db.insert("meta", { key: "currentBounce", value: team._id });
-  db.insert("meta", { key: "bounceDirection", value: +1 });
-
-  db.insert("answers", {
-    team: team._id,
-    slide: slide._id,
-    pounced: false,
-    bounced: false,
-    direct: true,
-    answered: false,
-    pointsAwarded: 0,
-  });
+  db.insert("meta", { key: "pounceWindowOpen", value: false });
 });
