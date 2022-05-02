@@ -8,6 +8,7 @@ export type Team = {
   claimed: boolean;
 };
 
+
 export type Meta = {
   _id: Id;
   key: string;

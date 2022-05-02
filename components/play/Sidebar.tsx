@@ -3,7 +3,7 @@ import { useAtom } from "jotai";
 import { SyntheticEvent, useEffect, useState } from "react";
 import { useMutation, useQuery } from "../../convex/_generated";
 import { Answer, Slide, Team } from "../../util/common";
-import { claimedTeamAtom } from "../../util/jotai";
+import { claimedTeamAtom, claimedTeamAtom2 } from "../../util/jotai";
 import PounceBtn from "./PounceBtn";
 import ScoreTable from "./ScoreTable";
 
@@ -32,7 +32,7 @@ function AnswerStats({ team, slide }: { team: Team; slide: Slide }) {
 
 export default function Sidebar() {
   const currentSlide: Slide | undefined = useQuery("currentSlide");
-  const [claimedTeam] = useAtom(claimedTeamAtom);
+  const [claimedTeam] = useAtom(claimedTeamAtom2);
 
   return (
     <div className="flex-1 h-full p-5">
