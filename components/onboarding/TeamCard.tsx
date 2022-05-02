@@ -7,7 +7,6 @@ import { claimedTeamAtom } from "../../util/jotai";
 const TeamCard: React.FC<{ team: Team }> = ({ team }) => {
   const claimTeam = useMutation("claimTeam");
   const [claimedTeam, setClaimedTeam] = useAtom(claimedTeamAtom);
-
   const handleClaim = (e: SyntheticEvent) => {
     e.preventDefault();
     console.log({ team });
@@ -15,7 +14,7 @@ const TeamCard: React.FC<{ team: Team }> = ({ team }) => {
     // Run claimTeam mutation
     claimTeam(team._id);
     // Save current team to global state and localStorage
-    setClaimedTeam({ ...team, claimed: true });
+    setClaimedTeam({ ...team, _id: team._id.toString(), claimed: true });
   };
 
   return (
