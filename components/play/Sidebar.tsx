@@ -2,7 +2,7 @@ import { Id } from "convex-dev/values";
 import { useAtom } from "jotai";
 import { SyntheticEvent, useEffect, useState } from "react";
 import { useMutation, useQuery } from "../../convex/_generated";
-import { Answer, Slide, Team } from "../../util/common";
+import { Slide, Team } from "../../util/common";
 import { POINTS } from "../../util/config";
 import { claimedTeamAtom } from "../../util/jotai";
 import PounceBtn from "./PounceBtn";

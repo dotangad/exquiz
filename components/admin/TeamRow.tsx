@@ -6,6 +6,7 @@ import { POINTS } from "../../util/config";
 export default function TeamRow({ team }: { team: Team }) {
   // TODO: Check for pounces, direct, bounce
   const [points, setPoints] = useState(team.points);
+  const setPointsMutation = useMutation("setPoints");
 
   const handleGrade = async (e: SyntheticEvent) => {
     const confText = `Are you sure? This will award Team ${team.tnumber} ${points} points`;
@@ -13,9 +14,8 @@ export default function TeamRow({ team }: { team: Team }) {
   };
 
   useEffect(() => {
-    // TODO: set points if points !== team.points
-    console.log("POINTS:", points);
-  }, [points]);
+    if (points !== team.points) setPointsMutation(team._id, points);
+  }, [points, team._id, setPointsMutation, team.points]);
 
   return (
     <tr>

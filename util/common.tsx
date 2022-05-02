@@ -21,14 +21,3 @@ export type Slide = {
   type: "question" | "answer";
   img: string;
 };
-
-export type Answer = {
-  _id: Id;
-  team: Id;
-  slide: Id;
-  pounced: boolean;
-  bounced: boolean;
-  direct: boolean;
-  answered: boolean;
-  pointsAwarded: number;
-};

@@ -11,7 +11,7 @@ export default query(async ({ db }) => {
   const slides = await db.table("slides").collect();
 
   for (let i = 0; i < slides.length; i++) {
-    if (slides[i].img === curr.value && i + 1 < slides.length)
+    if (slides[i]._id.equals(curr.value) && i + 1 < slides.length)
       return slides[i + 1];
   }
 

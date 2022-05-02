@@ -10,6 +10,7 @@ import type goToNextSlide from "./goToNextSlide";
 import type nextSlide from "./nextSlide";
 import type pounce from "./pounce";
 import type quizStarted from "./quizStarted";
+import type setPoints from "./setPoints";
 import type startQuiz from "./startQuiz";
 
 // This jumpstarts TypeScript completion of the convex-dev/values entry point.
@@ -51,6 +52,7 @@ export type ConvexAPI = {
     createTeam: ClientMutation<typeof createTeam>;
     goToNextSlide: ClientMutation<typeof goToNextSlide>;
     pounce: ClientMutation<typeof pounce>;
+    setPoints: ClientMutation<typeof setPoints>;
     startQuiz: ClientMutation<typeof startQuiz>;
   };
 };

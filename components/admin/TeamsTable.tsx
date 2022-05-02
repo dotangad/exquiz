@@ -1,5 +1,5 @@
 import { useQuery } from "../../convex/_generated";
-import { Answer, Slide, Team } from "../../util/common";
+import { Slide, Team } from "../../util/common";
 import TeamRow from "./TeamRow";
 
 export default function TeamsTable({
