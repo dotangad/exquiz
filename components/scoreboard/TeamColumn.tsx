@@ -30,7 +30,7 @@ export default function TeamColumn({
       <div className="p-5 flex flex-col gap-y-1 items-center justify-center">
         <div className="text-3xl font-bold text-slate-600">Team {tnumber}</div>
         <div className="text-2xl font-semibold text-slate-400">{points}</div>
-        <div className="flex gap-x-2 flex-wrap justify-center items-center">
+        <div className="flex gap-x-2 flex-wrap justify-center items-center h-[15px]">
           {bounce?.value.equals(_id) && (
             <div className="font-bold text-amber-500">(BOUNCE)</div>
           )}
