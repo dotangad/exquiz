@@ -6,7 +6,7 @@ export default query(async ({ db }) => {
     .filter((q) => q.eq(q.field("key"), "currentSlide"))
     .first();
 
-  if (!slide) return null;
+  if (!slide || !slide.value) return null;
 
   return db.get(slide.value);
 });

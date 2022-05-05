@@ -28,13 +28,7 @@ export default function PounceWindow() {
           <div>Pounce window open for {pwCountdown}s</div>
         </>
       ) : (
-        <button
-          className="btn"
-          onClick={() => {
-            console.log("open");
-            openPW();
-          }}
-        >
+        <button className="btn" onClick={() => openPW()}>
           Open Pounce Window
         </button>
       )}

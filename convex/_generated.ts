@@ -3,6 +3,7 @@
 // based on the contents of this directory.
 // To regenerate, run `convex codegen`.
 import type allTeams from "./allTeams";
+import type bounceDirect from "./bounceDirect";
 import type claimTeam from "./claimTeam";
 import type closePounceWindow from "./closePounceWindow";
 import type createTeam from "./createTeam";
@@ -13,7 +14,10 @@ import type nextSlide from "./nextSlide";
 import type openPounceWindow from "./openPounceWindow";
 import type pounce from "./pounce";
 import type pounceWindow from "./pounceWindow";
+import type pounces from "./pounces";
 import type quizStarted from "./quizStarted";
+import type setBounce from "./setBounce";
+import type setDirect from "./setDirect";
 import type setPoints from "./setPoints";
 import type startQuiz from "./startQuiz";
 
@@ -47,10 +51,12 @@ type ClientQuery<F extends (first: QueryCtx, ...args: any) => any> = (
 export type ConvexAPI = {
   queries: {
     allTeams: ClientQuery<typeof allTeams>;
+    bounceDirect: ClientQuery<typeof bounceDirect>;
     currentSlide: ClientQuery<typeof currentSlide>;
     hasPounced: ClientQuery<typeof hasPounced>;
     nextSlide: ClientQuery<typeof nextSlide>;
     pounceWindow: ClientQuery<typeof pounceWindow>;
+    pounces: ClientQuery<typeof pounces>;
     quizStarted: ClientQuery<typeof quizStarted>;
   };
   mutations: {
@@ -60,6 +66,8 @@ export type ConvexAPI = {
     goToNextSlide: ClientMutation<typeof goToNextSlide>;
     openPounceWindow: ClientMutation<typeof openPounceWindow>;
     pounce: ClientMutation<typeof pounce>;
+    setBounce: ClientMutation<typeof setBounce>;
+    setDirect: ClientMutation<typeof setDirect>;
     setPoints: ClientMutation<typeof setPoints>;
     startQuiz: ClientMutation<typeof startQuiz>;
   };

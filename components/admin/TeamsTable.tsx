@@ -9,6 +9,8 @@ export default function TeamsTable({
   teams: Team[];
   currentSlide: Slide;
 }) {
+  const pounces = useQuery("pounces", currentSlide._id);
+
   return (
     <table className="tbl min-w-[600px]">
       <thead>
@@ -21,7 +23,13 @@ export default function TeamsTable({
       </thead>
       <tbody>
         {teams?.map((team, i) => (
-          <TeamRow team={team} key={i} />
+          <TeamRow
+            team={team}
+            key={i}
+            pounced={pounces?.some(({ team: teamId }) =>
+              team._id.equals(teamId)
+            )}
+          />
         ))}
       </tbody>
     </table>
