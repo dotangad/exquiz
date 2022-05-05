@@ -84,8 +84,6 @@ const Scoreboard: NextPage = () => {
     );
   }, [teams]);
 
-  // TODO: Add direct and bounce indicators
-
   return (
     <div>
       <Head>

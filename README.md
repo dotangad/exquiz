@@ -33,9 +33,6 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-## TODO
-- [ ] Protect admin with authentication
-
 ## Build log
 - 29/04 @ 0654
     I just built out the onboarding page and team choice functionality. I'm super impressed by convex - it's really neat to get reactivity, and that too persistent and across multiple clients, with such little setup. This project is also the first time I'm using Jotai, I was looking for a way to sync state to localStorage and access it globally and Jotai's `atomWithStorage` from `jotai/utils` does exactly that.
@@ -55,3 +52,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     I have some idea of how I want to do direct tracking. I could have `currentDirect`, `currentBounce`, `bounceDirection` in the meta tables. When the quiz starts I could set all of these to default values (1, 1, +1 resp) and create an `answer` document for the direct team. I render grading buttons (like the ones I have for pounce) on the team that has the direct - when these buttons are clicked I set `currentBounce` to `currentBounce` + `bounceDirection` (with some validation ofc, I'll have to check if the next bounce has already pounced) and create an `answer` document for the bounced team. I can look at this answer document and render grading buttons in TeamsTable and do the same when a bounce is graded.
 - 03/05 @ 0056
     Direct/bounce tracking has far too many edge cases to bother with. I'm going to simplify this app significantly.
+
