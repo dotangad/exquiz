@@ -18,7 +18,7 @@ export default function Slides() {
     )
       return;
 
-    nextSlide && goToNextSlide(nextSlide?.img);
+    nextSlide && goToNextSlide(nextSlide?._id);
   };
 
   return (
