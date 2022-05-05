@@ -3,7 +3,7 @@ import Head from "next/head";
 import Rules from "../components/onboarding/Rules";
 import { useQuery } from "../convex/_generated";
 import Onboarding from "../components/onboarding/Onboarding";
-import { Team } from "../util/common";
+import { Slide, Team } from "../util/common";
 import { SCOREBOARD } from "../util/config";
 import { useEffect, useState } from "react";
 
@@ -27,11 +27,52 @@ const TeamCard: React.FC<{ team: Team }> = ({ team }) => {
   );
 };
 
+const Pounces = ({
+  currentSlide,
+  teams,
+}: {
+  currentSlide: Slide;
+  teams: Team[];
+}) => {
+  const pounces = useQuery("pounces", currentSlide._id);
+  const { pounceWindowOpen } = useQuery("pounceWindow") || {
+    pounceWindowOpen: false,
+  };
+
+  return (
+    <div className="flex-1 px-5 h-full w-full flex flex-col items-center justify-center gap-y-10">
+      {pounceWindowOpen ? (
+        <div className="text-4xl font-bold text-green-500 text-center">
+          Pounce Window Open
+        </div>
+      ) : (
+        <div className="text-4xl font-bold text-red-500 text-center">
+          Pounce Window Closed
+        </div>
+      )}
+      <div className="w-full">
+        <div className="text-slate-500 font-bold uppercase tracking-widek">
+          Pounces
+        </div>
+        {teams
+          .filter(({ _id }) => pounces?.some(({ team }) => team.equals(_id)))
+          .map((team, i) => (
+            <div key={i} className="text-2xl text-slate-700">
+              Team {team.tnumber}
+            </div>
+          ))}
+      </div>
+    </div>
+  );
+};
+
 const Scoreboard: NextPage = () => {
   const teams: Team[] | undefined = useQuery("allTeams");
   const quizStarted = useQuery("quizStarted");
-  const { pounceWindowOpen } = useQuery("pounceWindow") || {
-    pounceWindowOpen: false,
+  const currentSlide: Slide | undefined = useQuery("currentSlide");
+  const { bounce, direct } = useQuery("bounceDirect") || {
+    bounce: null,
+    direct: null,
   };
   const [maxPoints, setMaxPoints] = useState(0);
 
@@ -43,7 +84,7 @@ const Scoreboard: NextPage = () => {
     );
   }, [teams]);
 
-  // TODO: Add direct and pounce indicators
+  // TODO: Add direct and bounce indicators
 
   return (
     <div>
@@ -66,12 +107,12 @@ const Scoreboard: NextPage = () => {
         {quizStarted?.value === true ? (
           <div className="flex divide-x-2 divide-slate-300 h-full w-full pt-10">
             <div
-              className={`max-w-6xl w-full h-full mx-auto flex justify-center gap-x-[80px]`}
+              className={`max-w-5xl w-full h-full mx-auto flex justify-center gap-x-[80px]`}
             >
               {teams
                 // ?.sort((a, b) => b.points - a.points)
                 ?.sort((a, b) => a.tnumber - b.tnumber)
-                .map(({ points, tnumber }, i) => (
+                .map(({ points, tnumber, _id }, i) => (
                   <div key={i} className="flex flex-col items-center">
                     <div className="flex-1 h-full flex flex-col justify-end">
                       <div
@@ -89,21 +130,31 @@ const Scoreboard: NextPage = () => {
                       <div className="text-2xl font-semibold text-slate-400">
                         {points}
                       </div>
+                      <div
+                        className={`font-bold text-lg ${
+                          bounce?.value.equals(_id)
+                            ? "text-amber-500"
+                            : "text-white"
+                        }`}
+                      >
+                        (BOUNCE)
+                      </div>
+                      <div
+                        className={`font-bold text-lg ${
+                          direct?.value.equals(_id)
+                            ? "text-red-500"
+                            : "text-white"
+                        }`}
+                      >
+                        (DIRECT)
+                      </div>
                     </div>
                   </div>
                 ))}
             </div>
-            <div className="flex-1 px-5 h-full w-full flex items-center">
-              {pounceWindowOpen ? (
-                <div className="text-3xl font-bold text-green-500 text-center">
-                  Pounce Window Open
-                </div>
-              ) : (
-                <div className="text-3xl font-bold text-red-500 text-center">
-                  Pounce Window Closed
-                </div>
-              )}
-            </div>
+            {currentSlide && teams && (
+              <Pounces teams={teams} currentSlide={currentSlide} />
+            )}
           </div>
         ) : (
           <div className="max-w-6xl w-full mx-auto grid grid-cols-2 gap-3">

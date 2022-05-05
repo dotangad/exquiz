@@ -17,8 +17,6 @@ import TeamsTable from "../../components/admin/TeamsTable";
 const Admin: NextPage = () => {
   const quizStarted = useQuery("quizStarted");
   const currentSlide: Slide | undefined = useQuery("currentSlide");
-  const nextSlide: Slide | undefined = useQuery("nextSlide");
-  const goToNextSlide = useMutation("goToNextSlide");
   const teams: Team[] | undefined = useQuery("allTeams");
 
   return (
