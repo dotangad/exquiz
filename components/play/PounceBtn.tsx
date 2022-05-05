@@ -9,36 +9,28 @@ export default function PounceBtn({
   claimedTeam: Team;
   currentSlide: Slide;
 }) {
-  // TODO
-  // Check if PW open, not pounced already
-  // If open and not pounced - pounce btn not disabled
-  // Else - pounce btn disabled
-  // pounce btn onClick - call pounce mutation
+  // @ts-ignore
+  const hasPounced = useQuery("hasPounced", currentSlide._id, claimedTeam._id);
+  const { pounceWindowOpen } = useQuery("pounceWindow") || {
+    pounceWindowOpen: false,
+  };
+  const pounce = useMutation("pounce");
 
   return (
     <div className="flex items-center justify-center">
-      {/* TODO: show pounce window open/close */}
-      <button className="btn">Pounce</button>
+      {hasPounced ? (
+        <div>You have pounced</div>
+      ) : pounceWindowOpen ? (
+        <button
+          className="btn"
+          disabled={!pounceWindowOpen || hasPounced}
+          onClick={() => pounce(claimedTeam._id, currentSlide._id)}
+        >
+          Pounce
+        </button>
+      ) : (
+        <div>Pounce window is closed</div>
+      )}
     </div>
   );
-
-  //   const hasAnswered = useQuery(
-  //     "hasAnswered",
-  //     claimedTeam._id,
-  //     currentSlide._id
-  //   );
-  //   const pounce = useMutation("pounce");
-
-  //   const handlePounce = async (e: SyntheticEvent) => {
-  //     e.preventDefault();
-  //     await pounce(claimedTeam._id, currentSlide._id);
-  //   };
-
-  //   return (
-  //     <div className="flex items-center justify-center">
-  //       <button className="btn" onClick={handlePounce} disabled={hasAnswered}>
-  //         Pounce
-  //       </button>
-  //     </div>
-  //   );
 }

@@ -1,6 +1,6 @@
-import { mutation } from "convex-dev/server";
+import { query } from "convex-dev/server";
 
-export default mutation(async ({ db }) => {
+export default query(async ({ db }) => {
   const isOpen = await db
     .table("meta")
     .filter((q) => q.eq(q.field("key"), "pounceWindowOpen"))
@@ -10,6 +10,8 @@ export default mutation(async ({ db }) => {
     .filter((q) => q.eq(q.field("key"), "pounceWindowOpenSince"))
     .first();
 
-  db.update(isOpen._id, { value: true });
-  db.update(openSince._id, { value: Date.now() });
+  return {
+    pounceWindowOpen: isOpen.value,
+    pounceWindowOpenSince: openSince.value,
+  };
 });

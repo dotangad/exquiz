@@ -1,6 +1,7 @@
-import { SyntheticEvent } from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
 import { useQuery, useMutation } from "../../convex/_generated";
 import { Slide } from "../../util/common";
+import PounceWindow from "./PounceWindow";
 
 export default function Slides() {
   const currentSlide: Slide | undefined = useQuery("currentSlide");
@@ -30,24 +31,27 @@ export default function Slides() {
         />
 
         <div className="mt-5 flex gap-x-3">
-          <div className="flex-1">
+          <div className="flex-1 flex justify-between items-start">
             <div>
-              <div className="uppercase text-sm text-slate-400 font-bold mt-2">
-                Current Slide
+              <div>
+                <div className="uppercase text-sm text-slate-400 font-bold mt-2">
+                  Current Slide
+                </div>
+                <div className="text-lg">
+                  {currentSlide?.img} - {currentSlide?.type}
+                </div>
               </div>
-              <div className="text-lg">
-                {currentSlide?.img} - {currentSlide?.type}
+              <div className="mt-5">
+                <button
+                  className="btn"
+                  onClick={handleNext}
+                  disabled={!nextSlide}
+                >
+                  Next Slide
+                </button>
               </div>
             </div>
-            <div className="mt-5">
-              <button
-                className="btn"
-                onClick={handleNext}
-                disabled={!nextSlide}
-              >
-                Next Slide
-              </button>
-            </div>
+            <PounceWindow />
           </div>
           <div>
             <img

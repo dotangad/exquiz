@@ -4,11 +4,15 @@
 // To regenerate, run `convex codegen`.
 import type allTeams from "./allTeams";
 import type claimTeam from "./claimTeam";
+import type closePounceWindow from "./closePounceWindow";
 import type createTeam from "./createTeam";
 import type currentSlide from "./currentSlide";
 import type goToNextSlide from "./goToNextSlide";
+import type hasPounced from "./hasPounced";
 import type nextSlide from "./nextSlide";
+import type openPounceWindow from "./openPounceWindow";
 import type pounce from "./pounce";
+import type pounceWindow from "./pounceWindow";
 import type quizStarted from "./quizStarted";
 import type setPoints from "./setPoints";
 import type startQuiz from "./startQuiz";
@@ -44,13 +48,17 @@ export type ConvexAPI = {
   queries: {
     allTeams: ClientQuery<typeof allTeams>;
     currentSlide: ClientQuery<typeof currentSlide>;
+    hasPounced: ClientQuery<typeof hasPounced>;
     nextSlide: ClientQuery<typeof nextSlide>;
+    pounceWindow: ClientQuery<typeof pounceWindow>;
     quizStarted: ClientQuery<typeof quizStarted>;
   };
   mutations: {
     claimTeam: ClientMutation<typeof claimTeam>;
+    closePounceWindow: ClientMutation<typeof closePounceWindow>;
     createTeam: ClientMutation<typeof createTeam>;
     goToNextSlide: ClientMutation<typeof goToNextSlide>;
+    openPounceWindow: ClientMutation<typeof openPounceWindow>;
     pounce: ClientMutation<typeof pounce>;
     setPoints: ClientMutation<typeof setPoints>;
     startQuiz: ClientMutation<typeof startQuiz>;

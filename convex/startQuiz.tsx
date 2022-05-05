@@ -14,4 +14,5 @@ export default mutation(async ({ db }) => {
   db.insert("meta", { key: "currentDirect", value: team._id });
   db.insert("meta", { key: "currentBounce", value: team._id });
   db.insert("meta", { key: "pounceWindowOpen", value: false });
+  db.insert("meta", { key: "pounceWindowOpenSince", value: Date.now() });
 });
