@@ -11,7 +11,7 @@ export default query(async ({ db }) => {
     .first();
 
   return {
-    pounceWindowOpen: isOpen.value,
-    pounceWindowOpenSince: openSince.value,
+    pounceWindowOpen: isOpen?.value ?? false,
+    pounceWindowOpenSince: openSince?.value ?? Date.now(),
   };
 });

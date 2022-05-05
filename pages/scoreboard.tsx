@@ -40,15 +40,16 @@ const Scoreboard: NextPage = () => {
           <h1 className="text-6xl font-bold text-center text-slate-700 mb-1">
             {SCOREBOARD.QUIZNAME}
           </h1>
-          {pounceWindowOpen ? (
-            <div className="text-4xl font-bold text-green-500 text-center">
-              Pounce Window Open
-            </div>
-          ) : (
-            <div className="text-4xl font-bold text-red-500 text-center">
-              Pounce Window Closed
-            </div>
-          )}
+          {quizStarted?.value === true &&
+            (pounceWindowOpen ? (
+              <div className="text-4xl font-bold text-green-500 text-center">
+                Pounce Window Open
+              </div>
+            ) : (
+              <div className="text-4xl font-bold text-red-500 text-center">
+                Pounce Window Closed
+              </div>
+            ))}
         </div>
 
         {quizStarted?.value === true ? (

@@ -6,6 +6,8 @@ const AddTeamForm: React.FC = () => {
   const [name, setName] = useState("");
   const [error, setError] = useState("");
   const createTeam = useMutation("createTeam");
+  const cleanDB = useMutation("cleanDB");
+
   const teams = useQuery("allTeams");
 
   useEffect(() => {
@@ -38,33 +40,38 @@ const AddTeamForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-y-3">
-      <div className="flex items-center gap-x-5">
-        <label htmlFor="tnumber">Team Number</label>
-        <input
-          name="tnumber"
-          type="number"
-          value={tnumber}
-          onChange={(e) => setTnumber(Number(e.target.value))}
-          disabled={true}
-        />
-      </div>
-      <div className="flex items-center gap-x-5">
-        <label htmlFor="name">Team Name</label>
-        <input
-          name="name"
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </div>
-      <div className="text-red-500">{error}</div>
-      <div>
-        <button type="submit" className="btn">
-          Create
-        </button>
-      </div>
-    </form>
+    <>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-y-3">
+        <div className="flex items-center gap-x-5">
+          <label htmlFor="tnumber">Team Number</label>
+          <input
+            name="tnumber"
+            type="number"
+            value={tnumber}
+            onChange={(e) => setTnumber(Number(e.target.value))}
+            disabled={true}
+          />
+        </div>
+        <div className="flex items-center gap-x-5">
+          <label htmlFor="name">Team Name</label>
+          <input
+            name="name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div className="text-red-500">{error}</div>
+        <div>
+          <button type="submit" className="btn">
+            Create
+          </button>
+        </div>
+      </form>
+      <button className="btn mt-5" onClick={() => cleanDB()}>
+        Clear DB
+      </button>
+    </>
   );
 };
 

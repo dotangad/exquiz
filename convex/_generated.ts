@@ -5,6 +5,7 @@
 import type allTeams from "./allTeams";
 import type bounceDirect from "./bounceDirect";
 import type claimTeam from "./claimTeam";
+import type cleanDB from "./cleanDB";
 import type closePounceWindow from "./closePounceWindow";
 import type createTeam from "./createTeam";
 import type currentSlide from "./currentSlide";
@@ -61,6 +62,7 @@ export type ConvexAPI = {
   };
   mutations: {
     claimTeam: ClientMutation<typeof claimTeam>;
+    cleanDB: ClientMutation<typeof cleanDB>;
     closePounceWindow: ClientMutation<typeof closePounceWindow>;
     createTeam: ClientMutation<typeof createTeam>;
     goToNextSlide: ClientMutation<typeof goToNextSlide>;

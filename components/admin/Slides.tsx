@@ -7,6 +7,7 @@ export default function Slides() {
   const currentSlide: Slide | undefined = useQuery("currentSlide");
   const nextSlide: Slide | undefined = useQuery("nextSlide");
   const goToNextSlide = useMutation("goToNextSlide");
+  const cleanDB = useMutation("cleanDB");
 
   const handleNext = async (e: SyntheticEvent) => {
     e.preventDefault();
@@ -51,7 +52,12 @@ export default function Slides() {
                 </button>
               </div>
             </div>
-            <PounceWindow />
+            <div>
+              <PounceWindow />
+              <button className="btn" onClick={() => cleanDB()}>
+                Clear DB
+              </button>
+            </div>
           </div>
           <div>
             <img
